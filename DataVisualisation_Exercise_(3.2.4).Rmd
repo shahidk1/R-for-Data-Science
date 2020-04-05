@@ -1,0 +1,65 @@
+---
+title: "Data Visualisations Exercises (3.3.4)"
+author: "Mohammed Shaahid Khan"
+
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+ggplot2::mpg
+
+```
+## Q1) Run ggplot(data = mpg). What do you see?
+  
+  A blank canvas that requires the need for geompoints or 'layers'
+  this is done by calling the function
+---
+  $$ggplot(data = subset) +
+    GEOM Function(mapping = aes(x = xlabel,y = ylabel))$$
+---
+
+```{r}
+
+ggplot(data=mpg)
+
+```
+---
+## Q2) How many rows are in mpg? How many columns?
+
+R has a calling function that provides these details shown below
+$$nrows(mpg),ncol(mpg)$$
+
+```{r}
+nrow(mpg) 
+ncol(mpg)
+```
+---
+## Q3) What does the drv variable describe? Read the help for ?mpg to find out.
+
+calling the ?mpg gives the description of all relevant variavles for mpg. drv variable states that it represents type of drive train, (f= front wheel drive, r= rear wheel drive, 4 = 4wd)
+
+```{r}
+?mpg
+```
+---
+## Q4) Make a scatterplot of hwy vs cyl
+
+To note, hwy is highway miles and cyl is numer of cylinders. it seems that the lower cylinder in a vehicle, the general hwy limits are also lower compared to vehicles with a higher cylinder count. However, there is a big overlap with 4,6, and 8 cylinder vehicles. We can assume that the highway milage per gallon is generally $$22<hwy<26$$. For 4 cyclinder vehicles, the maximum is significantly higher.
+
+```{r}
+
+ggplot(mpg) +
+  geom_point( mapping = aes(x = hwy, y = cyl))
+
+```
+---
+## Q5) What happens if you make a scatterplot of class vs drv? Why is the plot not useful?
+
+The plot is not useful because the scatterplot data has no negative or positive pattern when looking at these two features. Also, the data does not give a direct intepretation on fuel consumptopn but rather how vehicles can vary with the type of drive chain. this added to a a matrix scatterplot may prove more useful.
+
+
+```{r}
+ggplot(mpg) +
+  geom_point(mapping = aes(x=class,y=drv))
+```
